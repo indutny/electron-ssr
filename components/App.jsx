@@ -1,7 +1,5 @@
 import { useState, useCallback } from 'react';
 
-let t;
-
 export default function App() {
   const [count, setCount] = useState(0);
 
