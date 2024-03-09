@@ -1,0 +1,28 @@
+{
+  "name": "electron-ssr",
+  "type": "module",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "main/index.js",
+  "scripts": {
+    "format": "prettier --cache --write .",
+    "build:jsx": "esbuild components/*.jsx --jsx=automatic --outdir=components/",
+    "build:bundle": "esbuild renderer/index.js --bundle --outfile=renderer/build/bundle.js",
+    "build": "npm run build:jsx && npm run build:bundle",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Fedor Indutny <238531+indutny@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^29.1.1",
+    "esbuild": "^0.20.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-reconciler": "^0.29.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
