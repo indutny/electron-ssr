@@ -12,19 +12,15 @@ export default function App() {
   }, []);
 
   return (
-    <div className={count > 5 ? 'red' : null}>
-      <h1>React in Main Process</h1>
+    <div className="main">
+      <h3>This runs in main process</h3>
 
-      <section className="controls">
-        <button onClick={addOne}>Add one</button>
-        <button onClick={removeOne}>Remove one</button>
-      </section>
+      <p>Current count: {count}</p>
 
-      <section className="results">
-        {count > 5 ? <div>You clicked so much</div> : null}
-
-        <div>Times clicked: {count}</div>
-      </section>
+      <electron:renderer
+        component="Renderer"
+        props={{ count, addOne, removeOne }}
+      />
     </div>
   );
 }

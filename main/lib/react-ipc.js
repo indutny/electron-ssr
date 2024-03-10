@@ -177,6 +177,21 @@ export default class ReactIPC {
   }
 
   #createInstance(tag, inputProps) {
+    if (tag === 'electron:renderer') {
+      if (inputProps.children?.length) {
+        throw new Error('electron:renderer node cannot have children');
+      }
+
+      const { ipc, props } = this.#convertProps(inputProps.props);
+
+      return {
+        type: 'client-node',
+        component: inputProps.component,
+        ipc,
+        props,
+      };
+    }
+
     const { ipc, props } = this.#convertProps(inputProps);
 
     return {
@@ -190,6 +205,13 @@ export default class ReactIPC {
 
   #prepareUpdate(instance, newProps) {
     this.#invalidateIPCProps(instance.ipc);
+    if (instance.type === 'client-node') {
+      if (newProps.children?.length) {
+        throw new Error('electron:renderer node cannot have children');
+      }
+
+      return this.#convertProps(newProps.props);
+    }
     return this.#convertProps(newProps);
   }
 

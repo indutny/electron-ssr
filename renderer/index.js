@@ -1,5 +1,10 @@
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { createRoot } from 'react-dom/client';
+import Renderer from '../components/Renderer.jsx';
+
+const CLIENT_COMPONENTS = {
+  Renderer,
+};
 
 const root = createRoot(document.getElementById('root'));
 
@@ -20,6 +25,10 @@ function convertTree(node) {
 
   if (node.type === 'text') {
     return node.value;
+  }
+
+  if (node.type === 'client-node') {
+    return jsx(CLIENT_COMPONENTS[node.component], node.props);
   }
 
   if (node.content.length === 0) {

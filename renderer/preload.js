@@ -46,7 +46,7 @@ function addIPCCallbacks(node, newCallbackCache) {
       ...props,
       ...mappedIPC,
     },
-    content: node.content.map((child) =>
+    content: node.content?.map((child) =>
       addIPCCallbacks(child, newCallbackCache),
     ),
   };

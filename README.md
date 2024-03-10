@@ -27,7 +27,8 @@ mapped to their original functions via IPC calls.
 
 - [x] Reconciliate tree in the main
 - [x] Wrap callbacks with ipc calls
-- [ ] Renderer boundary and components.
+- [x] Client components
+- [ ] Syntax sugar for client components ('use client' and so forth)
 
 ## Running
 
