@@ -31,6 +31,10 @@ function convertTree(node) {
     return jsx(CLIENT_COMPONENTS[node.component], node.props);
   }
 
+  if (node.type !== 'node') {
+    throw new Error(`Unexpected node type: ${node.type}`);
+  }
+
   if (node.content.length === 0) {
     return jsx(node.tag, node.props);
   }

@@ -40,15 +40,24 @@ function addIPCCallbacks(node, newCallbackCache) {
     mappedIPC[key] = fn;
   }
 
+  let content;
+  if (node.type === 'node') {
+    content = node.content.map((child) =>
+      addIPCCallbacks(child, newCallbackCache),
+    );
+  } else if (node.type === 'client-node') {
+    // No content
+  } else {
+    throw new Error(`Unexpected node type: ${node.type}`);
+  }
+
   return {
     ...node,
     props: {
       ...props,
       ...mappedIPC,
     },
-    content: node.content?.map((child) =>
-      addIPCCallbacks(child, newCallbackCache),
-    ),
+    content,
   };
 }
 
