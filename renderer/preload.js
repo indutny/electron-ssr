@@ -33,7 +33,7 @@ function addIPCCallbacks(node, newCallbackCache) {
           return arg;
         });
 
-        return ipcRenderer.sendSync('react-ipc:invokeCallback', value, args);
+        return ipcRenderer.invoke('react-ipc:invokeCallback', value, args);
       });
     newCallbackCache.set(value, fn);
 

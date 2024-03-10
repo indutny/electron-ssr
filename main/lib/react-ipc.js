@@ -148,8 +148,8 @@ export default class ReactIPC {
       return this.#getTree();
     });
 
-    ipc.on('react-ipc:invokeCallback', (event, id, args) => {
-      event.returnValue = this.#invokeCallback(id, args);
+    ipc.handle('react-ipc:invokeCallback', (_event, id, args) => {
+      return this.#invokeCallback(id, args);
     });
   }
 
